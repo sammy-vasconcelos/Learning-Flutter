@@ -73,3 +73,38 @@ var funcaoParam = funcaoFora(3)
 chamar 3x essa variavel: funcaoParam(11) vai demorar apenas 13s
 
 ![](https://media.tenor.com/bQuWIFsZWEgAAAAM/thurston-waffles-meow.gif)
+<br />
+<br />
+# Filter
+```dart
+main() {
+  var notas = [8.2, 7.1, 6.2, 4.4, 8.8, 9.1, 5.1, 10.0, 9.5, 9.0];
+  // fazer funçoes como essa é bom por que elas podem ser reutilizadas utilizando outras listas
+  var notasBoasFn = (double nota) => nota >= 7 && nota < 9;
+  var notasMuitoBoasFn = (double nota) => nota >= 9;
+  //o where faz um teste para saber se  o elemento vai fazer parte ou não do resultado final
+  var notasBoas = notas.where(notasBoasFn);
+  var notasMuitoBoas = notas.where(notasMuitoBoasFn);
+
+  print("notas normais: ${notas}");
+  print("Notas boas: ${notasBoas}");
+  print("Notas MUITO boas: ${notasMuitoBoas}");
+}
+```
+- exemplo com Generics: 
+```dart
+List<COISA> filtrar<COISA>(List<COISA> lista, bool Function(COISA) fn){
+  List<COISA> listaFiltrada = [];
+  for(COISA elemento in lista){
+    if(fn(elemento)){
+      listaFiltrada.add(elemento);
+    }
+  }
+  return listaFiltrada;
+}
+main(){
+  var nomes = ["ana", "benedito", "Edmundo", "bea", "João"];
+  var nomesGrandes = (String nomes) => nomes.length > 4;
+  print(filtrar(nomes, nomesGrandes));
+}
+```
