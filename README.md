@@ -29,3 +29,47 @@ paramOpcional2({int a = 10, int b = 5}){
   return a
 }
 ```
+- Função que recebe função com paramentro
+```dart
+int executarVariasVezes(int quantidade, Function(String) fn, String valor){
+  String textoCompleto = '';
+  for (int i = 0; i < quantidade; i++){
+    textoCompleto += fn(valor);
+  }
+  return textoCompleto.length;
+}
+main(){
+  var meuPrint = (String valor) {
+    print(valor);
+    return valor;
+  };
+  var tamanho = executarVariasVezes(10, meuPrint, "Muito legal");
+  print(tamanho);
+}
+```
+- Função que retorna uma função poder acelerar o processamento das operações:
+```
+funcaoFora(p1){
+  //setenca 1
+  //setenca 2
+  //setenca 3
+  return (p2){
+    //setenca 1
+    //setenca 2
+  }
+}
+```
+Considerando que a funçãoFora demora 10s para processar e a segunda demora 1s,
+chamar a funçãoFora 3x assim: 
+```
+funcaoFora(3)(11)
+```
+vai demorar 33s.
+Fazer a função: 
+```
+var funcaoParam = funcaoFora(3)
+```
+ e
+chamar 3x essa variavel: funcaoParam(11) vai demorar apenas 13s
+
+![](https://media.tenor.com/bQuWIFsZWEgAAAAM/thurston-waffles-meow.gif)
